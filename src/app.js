@@ -4,12 +4,17 @@ const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 
+
+
+
 const mainRouter = require('./routes/main');
+const mainApiRouter = require('./routes/api/main');
 
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
 
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
@@ -25,6 +30,8 @@ app.use(
 );
 
 app.use('/', mainRouter);
+app.use('/api', mainApiRouter);
+
 
 app.listen(3000, () => {
   console.log('listening in http://localhost:3000');
